@@ -1,7 +1,5 @@
-
-
+// =================== SAVAT ===================
 const CARTITEM = JSON.parse(localStorage.getItem('CART')) || [];
-
 
 document.querySelectorAll('.add_to_cart_btn').forEach(btn => {
     btn.addEventListener('click', function () {
@@ -10,9 +8,9 @@ document.querySelectorAll('.add_to_cart_btn').forEach(btn => {
 });
 
 function addTocart(ELEMENT) {
-    const Name = ELEMENT.querySelector("h3").textContent;
+    const Name = ELEMENT.querySelector("h3").textContent.trim();
     const Price = ELEMENT.querySelector(".price").textContent;
-    const ImageSrc = ELEMENT.querySelector("img").src;
+    const ImageSrc = ELEMENT.querySelector("img").getAttribute("src"); // ✅ src attributi
     const price = parseFloat(Price.replace('$', ''));
 
     const uxshashItem = CARTITEM.find(item => item.name === Name);
@@ -23,7 +21,7 @@ function addTocart(ELEMENT) {
         CARTITEM.push({
             name: Name,
             price: price,
-            img: ImageSrc,
+            img: ImageSrc,   // ✅ ./image/apl.jpg saqlanadi
             quantity: 1
         });
     }
@@ -32,78 +30,64 @@ function addTocart(ELEMENT) {
     updateCartCount();
 }
 
-
 function updateCartCount() {
     const countSAVAT = document.querySelector(".countSAVAT");
-
-    const totalCount = CARTITEM.reduce((sum, item) => {
-        return sum + item.quantity;
-    }, 0);
+    if (!countSAVAT) return; // ✅ boshqa sahifalarda xato bermaydi
+    const totalCount = CARTITEM.reduce((sum, item) => sum + item.quantity, 0);
     countSAVAT.textContent = totalCount;
 }
-
 
 function SETLOCALSTORAGE() {
     localStorage.setItem('CART', JSON.stringify(CARTITEM));
 }
 
-// sahifa yangilanganda ham savat soni chiqishi uchun
-document.addEventListener("DOMContentLoaded", () => {
-    updateCartCount();
-});
+document.addEventListener("DOMContentLoaded", updateCartCount);
 
 export { CARTITEM, SETLOCALSTORAGE };
 
 
+// =================== SAQLANGANLAR ===================
+const SAQLANGANLAR = JSON.parse(localStorage.getItem('saqlangan')) || [];
 
-
-// bu qism saqlanganlar uchun  funksiyaler
-const SAQLANGANLAR = JSON.parse(localStorage.getItem('saqlangan')) || []
-const countSAQLANGAN = document.querySelector(".countSAQLANGAN");
-console.log(countSAQLANGAN);
-
-
-
-// saved uchun funksoyalar
-document.querySelectorAll('.fav_btn').forEach((button, index) => {
+document.querySelectorAll('.fav_btn').forEach((button) => {
     button.addEventListener('click', function () {
-        addtoSaved(this.parentElement.parentElement)
-    })
+        addtoSaved(this.parentElement.parentElement);
+    });
 });
 
 function addtoSaved(SavedEL) {
+
+
     const Sprice = SavedEL.querySelector('.price').textContent;
-    const Simg = SavedEL.querySelector('img').src;
-    const Sname = SavedEL.querySelector("h3").textContent
+    const Simg = SavedEL.querySelector('img').getAttribute("src"); // ✅ src attributi
+    const Sname = SavedEL.querySelector("h3").textContent.trim();  // ✅ trim
 
-
-    const uxshashEl = SAQLANGANLAR.find(item => item.Name === Sname)
+    const uxshashEl = SAQLANGANLAR.find(item => item.Name === Sname);
 
     if (uxshashEl) {
-        alert('Bu maxsulot avvaldan bor edi')
+        alert('Bu maxsulot avvaldan bor edi');
     } else {
         SAQLANGANLAR.push({
             Name: Sname,
             image: Simg,
             narx: Sprice
-        })
-    }
-    setlocalsaqlangan()
-    updateSaqCount()
+        });
 
+    }
+    setlocalsaqlangan();
+    updateSaqCount();
 }
 
-
 function setlocalsaqlangan() {
-    localStorage.setItem('saqlangan', JSON.stringify(SAQLANGANLAR))
+    localStorage.setItem('saqlangan', JSON.stringify(SAQLANGANLAR));
 }
 
 function updateSaqCount() {
     const countSAQLANGAN = document.querySelector(".countSAQLANGAN");
+    if (!countSAQLANGAN) return; // ✅ boshqa sahifalarda xato bermaydi
     countSAQLANGAN.textContent = SAQLANGANLAR.length;
 }
 
 document.addEventListener("DOMContentLoaded", updateSaqCount);
 
-export { SAQLANGANLAR, setlocalsaqlangan, updateSaqCount }
-
+export { SAQLANGANLAR, setlocalsaqlangan, updateSaqCount };

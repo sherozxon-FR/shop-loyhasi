@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Style/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Savatdagilar</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1><a href="../index.html">shop</a></h1>
+            <ul>
+                <li>
+                    <a href="./saqlanganlar.html">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <span class="countSAQLANGAN">0</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./savatdagilar.html">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="countSAVAT">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section">
+        <div class="sarlavha">
+            <h2>savatdagilar</h2>
+        </div>
+
+        <div class="savat_container" id="cart_items">
+            <!-- Savatdagilar JS orqali dinamik qo'shiladi -->
+        </div>
+
+        <div class="umumiyNarxC">
+            <div>
+                <h2 class="TOTAL">total : 0$</h2>
+                <button class="checkout">
+                    <a href="../index.html">checkout</a>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="../js/savat.js"></script>
+    <script type="module" src="../js/index.js"></script>
+</body>
+
+</html>

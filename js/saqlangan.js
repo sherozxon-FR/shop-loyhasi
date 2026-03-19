@@ -3,15 +3,18 @@
 
 import { SAQLANGANLAR, setlocalsaqlangan, updateSaqCount } from './index.js'
 const saqlanganCart = document.querySelector('.saqlanganCart')
+console.log(SAQLANGANLAR.image);
+
 
 function ShowSaqlangan() {
     saqlanganCart.innerHTML = ""
     SAQLANGANLAR.forEach((el, index) => {
+
         saqlanganCart.innerHTML += `
        <div class="box">
     <div class="box-img">
         <div class="imageC">
-            <img src="${el.image}" alt="">
+            <img src="../${el.image}" alt="">
         </div>
 
         <div class="info">

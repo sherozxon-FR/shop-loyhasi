@@ -20,7 +20,7 @@ function ShowSavat() {
         <div class="box">
                 <div class="box-img">
                     <div class="imageC">
-                        <img src="${item.img}" alt="${item.name}">
+                        <img src="../${item.img}" alt="${item.name}">
                     </div>
 
                     <div class="info">
